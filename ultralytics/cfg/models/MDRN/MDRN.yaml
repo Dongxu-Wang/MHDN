@@ -1,0 +1,48 @@
+# Ultralytics YOLO 🚀, AGPL-3.0 license
+# YOLOv8 object detection model with P3-P5 outputs. For Usage examples see https://docs.ultralytics.com/tasks/detect
+
+# Parameters
+nc: 2  # number of classes
+scales: # model compound scaling constants, i.e. 'model=yolov8n.yaml' will call yolov8.yaml with scale 'n'
+  # [depth, width, max_channels]
+  s: [0.33, 0.50, 1024]  
+
+
+# YOLOv8.0n backbone
+backbone:
+
+  - [-1, 1, Conv, [64, 3, 2]]  # 0-P1/2
+  - [-1, 1, Conv, [128, 3, 2]]  # 1-P2/4
+  - [-1, 3, C2f, [128, True]]
+  - [-1, 1, Conv, [256, 3, 2]]  # 3-P3/8 (256, 80, 80)
+  - [-1, 6, C2f, [256, True]]   
+  - [-1, 1, GatLayer, [256, 3, 15, 80]] # 5-gatlayer p3
+  - [-1, 1, Conv, [512, 3, 2]]  # 6-P4/16 (512, 40, 40)
+  - [-1, 6, C2f, [512, True]]
+  - [-1, 1, GatLayer, [512, 3, 15, 40]] # 8-gatlayer p4
+  - [-1, 1, Conv, [1024, 3, 2]]  # 9-P5/32 (512, 20, 20)
+  - [-1, 3, C2f, [1024, True]]
+  - [-1, 1, SPPF, [1024, 5]]  # 11 (512, 20, 20)
+  - [-1, 1, GatLayer, [1024, 3, 15, 20]] # 12-gatlayer p5
+
+head:
+  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]
+  - [[-1, 8], 1, Concat, [1]]  # cat backbone P4
+  - [-1, 3, C2f, [512]]  # 15
+
+  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]
+  - [[-1, 5], 1, Concat, [1]]  # cat backbone P3
+  - [-1, 3, C2f, [256]]  # 18 (P3/8-small)
+
+  - [-1, 1, Conv, [256, 3, 2]]
+  - [[-1, 15], 1, Concat, [1]]  # cat head P4
+  - [-1, 3, C2f, [512]]  # 21 (P4/16-medium)
+
+  - [-1, 1, Conv, [512, 3, 2]]
+  - [[-1, 12], 1, Concat, [1]]  # cat head P5
+  - [-1, 3, C2f, [1024]]  # 24 (P5/32-large)
+
+  - [[18, 21, 24], 1, Detect, [nc]]  # Detect(P3, P4, P5)
+
+
+
