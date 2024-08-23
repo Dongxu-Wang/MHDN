@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div align="center">
   <p>
     <a href="https://yolovision.ultralytics.com/" target="_blank">
@@ -297,6 +298,8 @@ For Ultralytics bug reports and feature requests please visit [GitHub Issues](ht
 =======
 =======
 >>>>>>> fafc12d156dfc3a744dd4d0cd5120abc98a71374
+=======
+>>>>>>> 570ec739a34e85fafee1c1e778e53cf31567a08f
 # Multi-Constrained Heterogeneous Deep Networks
 ⭐ This code has been completely released ⭐ 
 <p align="center"> <img src="model.jpg" width="80%"> </p>
@@ -348,7 +351,10 @@ yolo predict model=MHDN.pt source='xxx.jpg'
 # <summary>Acknowledgements</summary>
 This code is built on [YOLOv8 (PyTorch)](https://github.com/ultralytics/ultralytics). We thank the authors for sharing the codes.
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 >>>>>>> 527209377cce8ee78973b44a6bb23ccc1d5f8880
 =======
 >>>>>>> fafc12d156dfc3a744dd4d0cd5120abc98a71374
+=======
+>>>>>>> 570ec739a34e85fafee1c1e778e53cf31567a08f
