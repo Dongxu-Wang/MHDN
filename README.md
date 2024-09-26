@@ -6,7 +6,7 @@
 # <summary>PREPARE</summary>
 
 ## 1. Dataset
-- Download data for our experiment from [baiduyun](https://pan.baidu.com/s/1glhitPRDya3Xcr0fAXXmxg) (code:9264). And the path of dataset is like that
+- Download data for our experiment from [baiduyun](https://pan.baidu.com/s/1glhitPRDya3Xcr0fAXXmxg) (code:9264) or [huggingface](https://huggingface.co/datasets/wong-dongxu/RSRBD). And the path of dataset is like that
 
 ```python
 MHDN
